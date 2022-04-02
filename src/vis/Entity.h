@@ -6,14 +6,15 @@
 #include "../sim/TrafficEntity.h"
 
 namespace vis {
-    class Entity : public sf::Drawable {
+    class Entity : public sf::Drawable, private sf::Transformable {
     protected:
-        sf::Drawable *drawable;
+        sf::Drawable* drawable;
+        sim::TrafficEntity trafficEntity;
 
-        void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+        void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     public:
-        sim::TrafficEntity trafficEntity;
+        void update(float elapsed);
     };
 
     class Car : public Entity {

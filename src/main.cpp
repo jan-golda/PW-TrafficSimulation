@@ -5,4 +5,6 @@ int main() {
 
     vis::Window window;
     window.run();
+
+    return 0;
 }

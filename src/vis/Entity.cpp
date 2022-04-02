@@ -5,23 +5,26 @@
 #include <glm/gtx/norm.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
-void vis::Entity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-    // transform entity based on traffic entity position
-    states.transform.translate(trafficEntity.position.x, trafficEntity.position.y);
+using namespace vis;
 
-    // calculate rotation angle based on traffic entity speed
+void Entity::update(float elapsed) {
+    // match traffic entity position
+    setPosition(trafficEntity.position.x, trafficEntity.position.y)
+
+    // update rotation based on traffic entity speed
     if(glm::length2(trafficEntity.speed) > 0.1) {
         glm::vec2 up = glm::vec2(0, -1);
         glm::vec2 heading = glm::normalize(trafficEntity.speed);
-        float angle = glm::degrees(glm::orientedAngle(up, heading));
-
-        states.transform.rotate(angle);
+        setRotation(glm::degrees(glm::orientedAngle(up, heading)));
     }
+}
 
+void Entity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+    states.transform *= getTransform();
     target.draw(*drawable, states);
 }
 
-vis::Car::Car() {
+Car::Car() {
     shape.setPointCount(6);
     shape.setPoint(0, sf::Vector2f(5, 0));
     shape.setPoint(1, sf::Vector2f(15, 0));
@@ -38,7 +41,7 @@ vis::Car::Car() {
     drawable = &shape;
 }
 
-vis::Pedestrian::Pedestrian() {
+Pedestrian::Pedestrian() {
     shape.setRadius(5);
     shape.setOrigin(5, 5);
 

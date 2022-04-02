@@ -9,7 +9,7 @@ namespace vis {
     class Window {
     private:
         sf::RenderWindow window;
-        vis::Map map;
+        Map map;
 
         void handleEvents();
 

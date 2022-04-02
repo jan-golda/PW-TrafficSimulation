@@ -1,7 +1,9 @@
 #include "Window.h"
 #include "Entity.h"
 
-vis::Window::Window() {
+using namespace vis;
+
+Window::Window() {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
@@ -9,7 +11,7 @@ vis::Window::Window() {
     window.setFramerateLimit(60);
 }
 
-void vis::Window::run() {
+void Window::run() {
     sf::Clock clock;
 
     while(window.isOpen()) {
@@ -21,7 +23,7 @@ void vis::Window::run() {
     }
 }
 
-void vis::Window::handleEvents() {
+void Window::handleEvents() {
     sf::Event event;
     while (window.pollEvent(event)) {
         switch (event.type) {
@@ -35,11 +37,11 @@ void vis::Window::handleEvents() {
     }
 }
 
-void vis::Window::update(float elapsed) {
+void Window::update(float elapsed) {
     map.update(elapsed);
 }
 
-void vis::Window::draw() {
+void Window::draw() {
     window.clear(sf::Color(224, 224, 224));
     window.draw(map);
     window.display();
