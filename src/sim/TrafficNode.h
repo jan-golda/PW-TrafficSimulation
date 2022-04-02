@@ -6,6 +6,9 @@
 #include "TrafficEntity.h"
 
 namespace sim {
+    // forward declaration
+    class TrafficEntity;
+
     class TrafficNode {
     private:
         int queueLimit = 0;
