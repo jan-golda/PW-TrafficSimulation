@@ -9,7 +9,7 @@ namespace sim {
     class TrafficNode {
     private:
         int queueLimit = 0;
-        std::queue<TrafficEntity *> queue;
+        std::queue<TrafficEntity*> queue;
 
     public:
         glm::vec2 position;
@@ -22,11 +22,11 @@ namespace sim {
 
         [[nodiscard]] bool isFull() const;
 
-        bool push(TrafficEntity *entity);
+        bool push(TrafficEntity* entity);
 
-        TrafficEntity *pop();
+        TrafficEntity* pop();
 
-        [[nodiscard]] TrafficEntity *peek() const;
+        [[nodiscard]] TrafficEntity* peek() const;
     };
 }
 

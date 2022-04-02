@@ -9,17 +9,17 @@ using namespace vis;
 
 void Entity::update(float elapsed) {
     // match traffic entity position
-    setPosition(trafficEntity.position.x, trafficEntity.position.y)
+    setPosition(trafficEntity.position.x, trafficEntity.position.y);
 
     // update rotation based on traffic entity speed
-    if(glm::length2(trafficEntity.speed) > 0.1) {
+    if (glm::length2(trafficEntity.speed) > 0.1) {
         glm::vec2 up = glm::vec2(0, -1);
         glm::vec2 heading = glm::normalize(trafficEntity.speed);
         setRotation(glm::degrees(glm::orientedAngle(up, heading)));
     }
 }
 
-void Entity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     states.transform *= getTransform();
     target.draw(*drawable, states);
 }

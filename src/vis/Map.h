@@ -13,6 +13,7 @@ namespace vis {
         std::list<Entity> entities;
     protected:
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
     public:
         void update(float elapsed);
     };

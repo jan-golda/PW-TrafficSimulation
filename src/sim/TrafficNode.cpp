@@ -18,18 +18,18 @@ bool TrafficNode::isFull() const {
     return getSize() >= getLimit();
 }
 
-bool TrafficNode::push(TrafficEntity *entity) {
+bool TrafficNode::push(TrafficEntity* entity) {
     if (isFull()) return false;
     queue.push(entity);
     return true;
 }
 
-TrafficEntity *TrafficNode::pop() {
-    TrafficEntity *e = queue.front();
+TrafficEntity* TrafficNode::pop() {
+    TrafficEntity* e = queue.front();
     queue.pop();
     return e;
 }
 
-TrafficEntity *TrafficNode::peek() const {
+TrafficEntity* TrafficNode::peek() const {
     return queue.front();
 }

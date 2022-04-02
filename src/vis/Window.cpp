@@ -14,7 +14,7 @@ Window::Window() {
 void Window::run() {
     sf::Clock clock;
 
-    while(window.isOpen()) {
+    while (window.isOpen()) {
         float elapsed = clock.restart().asSeconds();
 
         handleEvents();
