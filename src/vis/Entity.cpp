@@ -5,7 +5,7 @@
 #include <glm/gtx/norm.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
-void map::Entity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+void vis::Entity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     // transform entity based on traffic entity position
     states.transform.translate(trafficEntity.position.x, trafficEntity.position.y);
 
@@ -21,7 +21,7 @@ void map::Entity::draw(sf::RenderTarget &target, sf::RenderStates states) const 
     target.draw(*drawable, states);
 }
 
-map::Car::Car() {
+vis::Car::Car() {
     shape.setPointCount(6);
     shape.setPoint(0, sf::Vector2f(5, 0));
     shape.setPoint(1, sf::Vector2f(15, 0));
@@ -38,7 +38,7 @@ map::Car::Car() {
     drawable = &shape;
 }
 
-map::Pedestrian::Pedestrian() {
+vis::Pedestrian::Pedestrian() {
     shape.setRadius(5);
     shape.setOrigin(5, 5);
 

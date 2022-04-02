@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "../sim/TrafficEntity.h"
 
-namespace map {
+namespace vis {
     class Entity : public sf::Drawable {
     protected:
         sf::Drawable *drawable;

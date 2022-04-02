@@ -1,8 +1,8 @@
-#include "map/Window.h"
+#include "vis/Window.h"
 
 int main() {
     srand(time(NULL));
 
-    map::Window window;
+    vis::Window window;
     window.run();
 }

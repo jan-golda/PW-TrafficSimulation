@@ -6,11 +6,11 @@
 #include "Entity.h"
 #include "../sim/TrafficSimulation.h"
 
-namespace map {
+namespace vis {
     class Map : public sf::Drawable {
     private:
         sim::TrafficSimulation simulation;
-        std::list<map::Entity> entities;
+        std::list<vis::Entity> entities;
     protected:
         void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     public:

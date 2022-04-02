@@ -5,11 +5,11 @@
 #include <SFML/Graphics.hpp>
 #include "Map.h"
 
-namespace map {
+namespace vis {
     class Window {
     private:
         sf::RenderWindow window;
-        map::Map map;
+        vis::Map map;
 
         void handleEvents();
 
