@@ -1,8 +1,8 @@
-#include "SimulationWindow.h"
+#include "map/Window.h"
 
 int main() {
     srand(time(NULL));
 
-    SimulationWindow window;
+    map::Window window;
     window.run();
 }
