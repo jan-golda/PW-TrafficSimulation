@@ -3,11 +3,17 @@
 
 
 #include <SFML/Graphics.hpp>
+#include "map/Map.h"
 
 class SimulationWindow {
 private:
     sf::RenderWindow window;
+    map::Map map;
+
     void handleEvents();
+    void update(float elapsed);
+    void draw();
+
 public:
     SimulationWindow();
     void run();

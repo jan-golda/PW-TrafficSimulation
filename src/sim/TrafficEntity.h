@@ -8,6 +8,8 @@ namespace sim {
     public:
         glm::vec2 position;
         glm::vec2 speed;
+
+        void update(float elapsed);
     };
 }
 

@@ -1,4 +1,5 @@
 #include "SimulationWindow.h"
+#include "map/Entity.h"
 
 SimulationWindow::SimulationWindow() {
     sf::ContextSettings settings;
@@ -9,10 +10,14 @@ SimulationWindow::SimulationWindow() {
 }
 
 void SimulationWindow::run() {
+    sf::Clock clock;
+
     while(window.isOpen()) {
+        float elapsed = clock.restart().asSeconds();
+
         handleEvents();
-        window.clear(sf::Color(224, 224, 224));
-        window.display();
+        update(elapsed);
+        draw();
     }
 }
 
@@ -28,4 +33,14 @@ void SimulationWindow::handleEvents() {
                 break;
         }
     }
+}
+
+void SimulationWindow::update(float elapsed) {
+    map.update(elapsed);
+}
+
+void SimulationWindow::draw() {
+    window.clear(sf::Color(224, 224, 224));
+    window.draw(map);
+    window.display();
 }
