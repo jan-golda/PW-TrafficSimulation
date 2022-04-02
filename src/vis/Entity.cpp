@@ -24,6 +24,10 @@ void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(*drawable, states);
 }
 
+sim::TrafficEntity& Entity::getTrafficEntity() {
+    return trafficEntity;
+}
+
 Car::Car() {
     shape.setPointCount(6);
     shape.setPoint(0, sf::Vector2f(5, 0));

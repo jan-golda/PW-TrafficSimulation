@@ -10,12 +10,17 @@ namespace vis {
     class Map : public sf::Drawable {
     private:
         sim::TrafficSimulation simulation;
-        std::list<Entity> entities;
+        std::list<std::unique_ptr<Entity>> entities;
     protected:
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     public:
         void update(float elapsed);
+
+        Car* createCar();
+        Pedestrian* createPedestrian();
+
+        sim::TrafficSimulation& getTrafficSimulation();
     };
 }
 

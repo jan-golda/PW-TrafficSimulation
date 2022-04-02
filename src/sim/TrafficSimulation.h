@@ -12,6 +12,9 @@ namespace sim {
         std::list<sim::TrafficDispatcher*> dispatchers;
     public:
         void update(float elapsed);
+
+        void registerEntity(TrafficEntity* entity);
+        void registerDispatcher(TrafficDispatcher* dispatcher);
     };
 }
 

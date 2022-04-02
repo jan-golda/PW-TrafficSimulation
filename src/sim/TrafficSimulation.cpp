@@ -6,3 +6,11 @@ void sim::TrafficSimulation::update(float elapsed) {
     for (sim::TrafficEntity* e : entities)
         e->update(elapsed);
 }
+
+void sim::TrafficSimulation::registerEntity(TrafficEntity* entity) {
+    entities.push_back(entity);
+}
+
+void sim::TrafficSimulation::registerDispatcher(sim::TrafficDispatcher* dispatcher) {
+    dispatchers.push_back(dispatcher);
+}

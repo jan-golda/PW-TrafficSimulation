@@ -15,6 +15,7 @@ namespace vis {
 
     public:
         void update(float elapsed);
+        sim::TrafficEntity& getTrafficEntity();
     };
 
     class Car : public Entity {
