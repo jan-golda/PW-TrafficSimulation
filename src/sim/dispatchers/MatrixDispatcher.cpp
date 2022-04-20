@@ -9,11 +9,12 @@ bool MatrixDispatcher<NInputs, NOutputs>::checkEntity(TrafficEntity* entity, Edg
 
     // if the entity is not near the output node let it drive
     auto outputNode = outputNodes[edge.second];
-    if (!entity->isNear(outputNode.get()))
+    if (!entity->isNearTarget())
         return false;
 
     // deposit the entity into the output node
     outputNode->push(entity);
+    entity->setTargetNode(nullptr);
     edgesSemaphore[edge.first][edge.second]--;
     return true;
 }
@@ -48,6 +49,7 @@ void MatrixDispatcher<NInputs, NOutputs>::checkInputNode(std::size_t nodeId) {
 
     // accept the entity into this dispatcher
     node->pop();
+    entity->setTargetNode(outputNodes[target]);
     entities.push_back(std::make_pair(entity, edge));
     edgesSemaphore[edge.first][edge.second]++;
 }
