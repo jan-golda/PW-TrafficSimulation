@@ -38,6 +38,10 @@ void Window::handleEvents() {
                 window.close();
                 break;
 
+            case sf::Event::Resized:
+                window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+                break;
+
             default:
                 break;
         }
