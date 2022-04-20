@@ -136,16 +136,14 @@ namespace sim {
             if (node->empty()) return;
             auto entity = node->front();
 
-            // get the target node
-            // FIXME: apply routing
-            std::size_t target = -1;
-            for (int i = 0; i < NOutputs; i++) {
-                if (edges[nodeId][i]) {
-                    target = i;
-                    break;
-                }
-            }
-            if (target == -1) return;
+            // random the target node
+            std::vector<std::size_t> reachableNodes;
+            for (int i = 0; i < NOutputs; i++)
+                if (edges[nodeId][i])
+                    reachableNodes.push_back(i);
+
+            if (reachableNodes.empty()) return;
+            std::size_t target = reachableNodes[rand() % reachableNodes.size()];
 
             // edge for this entity
             Edge edge = std::make_pair(nodeId, target);
