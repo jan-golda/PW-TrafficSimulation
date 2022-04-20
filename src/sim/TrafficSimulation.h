@@ -3,7 +3,7 @@
 
 #include <list>
 #include "TrafficEntity.h"
-#include "TrafficDispatcher.h"
+#include "dispatchers/TrafficDispatcher.h"
 
 namespace sim {
     class TrafficSimulation {

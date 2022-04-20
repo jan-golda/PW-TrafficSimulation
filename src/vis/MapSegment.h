@@ -3,7 +3,7 @@
 
 
 #include <SFML/Graphics.hpp>
-#include "../sim/TrafficDispatcher.h"
+#include "../sim/dispatchers/TrafficDispatcher.h"
 
 namespace vis {
     /**

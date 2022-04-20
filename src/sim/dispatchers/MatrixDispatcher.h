@@ -5,7 +5,7 @@
 #include <memory>
 #include <map>
 #include <list>
-#include "../TrafficDispatcher.h"
+#include "TrafficDispatcher.h"
 #include "../TrafficNode.h"
 
 namespace sim {
