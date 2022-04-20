@@ -27,33 +27,47 @@ namespace sim {
          * Updates the dispatcher by applying logic based on edges and dependencies matrices.
          * @param elapsed Time (in seconds) from the last logic update.
          */
-        void update(float elapsed) override;
+        void update(float elapsed) override {
+            entities.template remove_if([this, &elapsed](auto entry){
+                return checkEntity(entry.first, entry.second, elapsed);
+            });
+            for (int i = 0; i < NInputs; i++)
+                checkInputNode(i);
+        }
 
         /**
          * Sets the input node from which the entities will be picked up.
          * @param i Id of the input node position within the dispatcher.
          * @param node Input node.
          */
-        void setInputNode(std::size_t i, const std::shared_ptr<TrafficNode>& node);
+        void setInputNode(std::size_t i, const std::shared_ptr<TrafficNode>& node) {
+            inputNodes[i] = node;
+        }
 
         /**
          * Sets the output node to which the entities will be redirected.
          * @param i Id of the output node position within the dispatcher.
          * @param node Output node.
          */
-        void setOutputNode(std::size_t i, const std::shared_ptr<TrafficNode>& node);
+        void setOutputNode(std::size_t i, const std::shared_ptr<TrafficNode>& node) {
+            outputNodes[i] = node;
+        }
 
         /**
          * Returns the requested input node.
          * @param i Id of the input node position within the dispatcher.
          */
-        std::shared_ptr<TrafficNode> getInputNode(std::size_t i);
+        std::shared_ptr<TrafficNode> getInputNode(std::size_t i) {
+            return inputNodes[i];
+        }
 
         /**
          * Returns the requested output node.
          * @param i Id of the output node position within the dispatcher.
          */
-        std::shared_ptr<TrafficNode> getOutputNode(std::size_t i);
+        std::shared_ptr<TrafficNode> getOutputNode(std::size_t i) {
+            return outputNodes[i];
+        }
 
     protected:
         /**
@@ -96,18 +110,61 @@ namespace sim {
          * @param elapsed Time (in seconds) from the last logic update.
          * @return if entity was deposited in the target node and should be removed.
          */
-        bool checkEntity(TrafficEntity* entity, Edge edge, float elapsed);
+        bool checkEntity(TrafficEntity* entity, Edge edge, float elapsed) {
+            entity->update(elapsed);
+
+            // if the entity is not near the output node let it drive
+            auto outputNode = outputNodes[edge.second];
+            if (!entity->isNearTarget())
+                return false;
+
+            // deposit the entity into the output node
+            outputNode->push(entity);
+            entity->setTargetNode(nullptr);
+            edgesSemaphore[edge.first][edge.second]--;
+            return true;
+        }
 
         /**
          * Perform dispatcher simulation logic for an input node.
          * @param nodeId Id (within this dispatcher) of an input node.
          */
-        void checkInputNode(std::size_t nodeId);
+        void checkInputNode(std::size_t nodeId) {
+            auto node = inputNodes[nodeId];
+
+            // check if there is an entity waiting
+            if (node->empty()) return;
+            auto entity = node->front();
+
+            // get the target node
+            // FIXME: apply routing
+            std::size_t target = -1;
+            for (int i = 0; i < NOutputs; i++) {
+                if (edges[nodeId][i]) {
+                    target = i;
+                    break;
+                }
+            }
+            if (target == -1) return;
+
+            // edge for this entity
+            Edge edge = std::make_pair(nodeId, target);
+
+            // check if the path is clear
+            if (edgesDependencies.count(edge))
+                for (const auto& dependentEdge : edgesDependencies[edge])
+                    if (edgesSemaphore[dependentEdge.first][dependentEdge.second])
+                        return;
+
+            // accept the entity into this dispatcher
+            node->pop();
+            entity->setTargetNode(outputNodes[target]);
+            entities.push_back(std::make_pair(entity, edge));
+            edgesSemaphore[edge.first][edge.second]++;
+        }
 
     };
 }
-
-#include "MatrixDispatcher.cpp"
 
 
 #endif //PW_TRAFFICSIMULATION_MATRIXDISPATCHER_H
