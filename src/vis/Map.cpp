@@ -7,6 +7,8 @@ void Map::update(float elapsed) {
     simulation.update(elapsed);
 
     // update visualization
+    for (auto&& segment : segments)
+        segment->update(elapsed);
     for (auto&& entity : entities)
         entity->update(elapsed);
 }
