@@ -34,6 +34,7 @@ namespace vis {
         sim::OneWayStraightDispatcher dispatcher;
 
         sf::RectangleShape roadShape;
+        sf::CircleShape arrowShape;
     };
 
 }
