@@ -17,9 +17,16 @@ void Window::run() {
     while (window.isOpen()) {
         float elapsed = clock.restart().asSeconds();
 
+        // inputs
         handleEvents();
-        update(elapsed);
-        draw();
+
+        // update
+        map.update(elapsed);
+
+        // draw
+        window.clear(sf::Color(224, 224, 224));
+        window.draw(map);
+        window.display();
     }
 }
 
@@ -35,14 +42,4 @@ void Window::handleEvents() {
                 break;
         }
     }
-}
-
-void Window::update(float elapsed) {
-    map.update(elapsed);
-}
-
-void Window::draw() {
-    window.clear(sf::Color(224, 224, 224));
-    window.draw(map);
-    window.display();
 }

@@ -6,22 +6,41 @@
 #include "Map.h"
 
 namespace vis {
+
+    /**
+     * Main windows of the simulations.
+     * Creates the SFML window and then runs the main update-draw loop.
+     */
     class Window {
     private:
+        /**
+         * SFML simulation window instance.
+         */
         sf::RenderWindow window;
+
+        /**
+         * Instance of the simulated map.
+         */
         Map map;
 
+        /**
+         * Part of the `run()` main loop that handles user inputs.
+         */
         void handleEvents();
 
-        void update(float elapsed);
-
-        void draw();
-
     public:
+        /**
+         * Creates and opens the visualization window.
+         */
         Window();
 
+        /**
+         * Starts the simulation and visualization.
+         * Implements the main update-draw loop.
+         */
         void run();
     };
+
 }
 
 
