@@ -43,6 +43,18 @@ namespace sim {
          */
         void setOutputNode(std::size_t i, const std::shared_ptr<TrafficNode>& node);
 
+        /**
+         * Returns the requested input node.
+         * @param i Id of the input node position within the dispatcher.
+         */
+        std::shared_ptr<TrafficNode> getInputNode(std::size_t i);
+
+        /**
+         * Returns the requested output node.
+         * @param i Id of the output node position within the dispatcher.
+         */
+        std::shared_ptr<TrafficNode> getOutputNode(std::size_t i);
+
     protected:
         /**
          * Incidence matrix that defines possible edges within the dispatcher area of responsibility.
