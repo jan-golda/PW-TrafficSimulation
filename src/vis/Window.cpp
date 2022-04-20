@@ -1,5 +1,5 @@
 #include "Window.h"
-#include "Entity.h"
+#include "entities/Entity.h"
 
 using namespace vis;
 

@@ -3,9 +3,11 @@
 
 
 #include <list>
-#include "Entity.h"
 #include "../sim/TrafficSimulation.h"
 #include "MapSegment.h"
+#include "entities/Entity.h"
+#include "entities/Car.h"
+#include "entities/Pedestrian.h"
 
 namespace vis {
 

@@ -3,7 +3,7 @@
 
 
 #include <SFML/Graphics.hpp>
-#include "../sim/TrafficEntity.h"
+#include "../../sim/TrafficEntity.h"
 
 namespace vis {
 
@@ -50,26 +50,6 @@ namespace vis {
          */
         sim::TrafficEntity trafficEntity;
 
-    };
-
-    /**
-     * Representation of the Entity that looks like a car.
-     */
-    class Car : public Entity {
-    private:
-        sf::ConvexShape shape;
-    public:
-        Car();
-    };
-
-    /**
-     * Representation of the Entity that looks like a pedestrian.
-     */
-    class Pedestrian : public Entity {
-    private:
-        sf::CircleShape shape;
-    public:
-        Pedestrian();
     };
 
     /**
