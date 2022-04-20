@@ -29,8 +29,10 @@ namespace vis {
         /**
          * Creates the entity.
          * @param drawable object that will be used in `draw()`.
+         * @param maxSpeed maximum speed (units/s) of the entity
+         * @param maxRotationSpeed maximum rotation speed (radian/s) of the entity
          */
-        explicit Entity(Drawable* drawable);
+        Entity(Drawable* drawable, float maxSpeed, float maxRotationSpeed);
 
         /**
          * A hook called whenever the entity should be displayed by SFML.

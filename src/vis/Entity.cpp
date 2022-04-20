@@ -7,7 +7,8 @@
 
 using namespace vis;
 
-Entity::Entity(sf::Drawable* drawable) : drawable(drawable) {}
+Entity::Entity(sf::Drawable* drawable, float maxSpeed, float maxRotationSpeed) :
+    drawable(drawable), trafficEntity(maxSpeed, maxRotationSpeed) {}
 
 void Entity::update(float elapsed) {
     // match traffic entity position
@@ -30,7 +31,7 @@ sim::TrafficEntity& Entity::getTrafficEntity() {
     return trafficEntity;
 }
 
-Car::Car() : Entity(&shape) {
+Car::Car() : Entity(&shape, 40, 0.1) {
     shape.setPointCount(6);
     shape.setPoint(0, sf::Vector2f(5, 0));
     shape.setPoint(1, sf::Vector2f(15, 0));
@@ -45,7 +46,7 @@ Car::Car() : Entity(&shape) {
     shape.setOutlineThickness(1);
 }
 
-Pedestrian::Pedestrian() : Entity(&shape) {
+Pedestrian::Pedestrian() : Entity(&shape, 10, 0.8) {
     shape.setRadius(5);
     shape.setOrigin(5, 5);
 
