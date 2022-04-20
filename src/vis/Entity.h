@@ -6,18 +6,53 @@
 #include "../sim/TrafficEntity.h"
 
 namespace vis {
-    class Entity : public sf::Drawable, private sf::Transformable {
-    protected:
-        sf::Drawable* drawable;
-        sim::TrafficEntity trafficEntity;
 
+    /**
+     * Abstract class that represents TrafficEntity in the visualization.
+     */
+    class Entity : public sf::Drawable, private sf::Transformable {
+    public:
+        /**
+         * Updates the entity position and rotation based on the TrafficEntity position.
+         * @param elapsed Time (in seconds) from the last logic update.
+         */
+        void update(float elapsed);
+
+        /**
+         * Returns the TrafficEntity represented by this entity.
+         * @return reference to TrafficEntity.
+         */
+        sim::TrafficEntity& getTrafficEntity();
+
+    protected:
+
+        /**
+         * Creates the entity.
+         * @param drawable object that will be used in `draw()`.
+         */
+        explicit Entity(Drawable* drawable);
+
+        /**
+         * A hook called whenever the entity should be displayed by SFML.
+         */
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-    public:
-        void update(float elapsed);
-        sim::TrafficEntity& getTrafficEntity();
+    private:
+        /**
+         * Drawable object that will be used in `draw()`.
+         */
+        sf::Drawable* drawable;
+
+        /**
+         * Simulation entity that is represented by this visualization entity.
+         */
+        sim::TrafficEntity trafficEntity;
+
     };
 
+    /**
+     * Representation of the Entity that looks like a car.
+     */
     class Car : public Entity {
     private:
         sf::ConvexShape shape;
@@ -25,6 +60,9 @@ namespace vis {
         Car();
     };
 
+    /**
+     * Representation of the Entity that looks like a pedestrian.
+     */
     class Pedestrian : public Entity {
     private:
         sf::CircleShape shape;
@@ -32,6 +70,9 @@ namespace vis {
         Pedestrian();
     };
 
+    /**
+     * Possible entity colors.
+     */
     const std::array<sf::Color, 16> ENTITY_COLORS = {
             sf::Color(229, 115, 115),
             sf::Color(240, 98, 146),
@@ -51,5 +92,6 @@ namespace vis {
             sf::Color(255, 138, 101),
     };
 }
+
 
 #endif //PW_TRAFFICSIMULATION_ENTITY_H
