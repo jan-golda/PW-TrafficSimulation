@@ -8,7 +8,12 @@ namespace vis {
 
     class Sidewalk : public MapSegment {
     public:
-        Sidewalk();
+        Sidewalk(
+                const std::shared_ptr<sim::TrafficNode>& inputNode0,
+                const std::shared_ptr<sim::TrafficNode>& outputNode0,
+                const std::shared_ptr<sim::TrafficNode>& inputNode1,
+                const std::shared_ptr<sim::TrafficNode>& outputNode1
+        );
 
         /**
          * Updates the segment based on its dispatcher.
@@ -17,9 +22,6 @@ namespace vis {
         void update(float elapsed) override;
 
         // getters and setters
-        void setInputNode(std::size_t i, const std::shared_ptr<sim::TrafficNode>& node);
-        void setOutputNode(std::size_t i, const std::shared_ptr<sim::TrafficNode>& node);
-
         sim::TrafficDispatcher* getDispatcher() override;
 
     protected:

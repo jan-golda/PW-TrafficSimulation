@@ -7,16 +7,18 @@
 
 using namespace vis;
 
-Sidewalk::Sidewalk() {
+Sidewalk::Sidewalk(
+        const std::shared_ptr<sim::TrafficNode>& inputNode0,
+        const std::shared_ptr<sim::TrafficNode>& outputNode0,
+        const std::shared_ptr<sim::TrafficNode>& inputNode1,
+        const std::shared_ptr<sim::TrafficNode>& outputNode1
+) {
+    dispatcher.setInputNode(0, inputNode0);
+    dispatcher.setOutputNode(0, outputNode0);
+    dispatcher.setInputNode(1, inputNode1);
+    dispatcher.setOutputNode(1, outputNode1);
+
     sidewalkShape.setFillColor(sf::Color(207, 216, 220));
-}
-
-void Sidewalk::setInputNode(std::size_t i, const std::shared_ptr<sim::TrafficNode>& node) {
-    dispatcher.setInputNode(i, node);
-}
-
-void Sidewalk::setOutputNode(std::size_t i, const std::shared_ptr<sim::TrafficNode>& node) {
-    dispatcher.setOutputNode(i, node);
 }
 
 void Sidewalk::update(float elapsed) {
