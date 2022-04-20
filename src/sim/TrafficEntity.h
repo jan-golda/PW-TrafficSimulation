@@ -16,10 +16,12 @@ namespace sim {
     public:
         /**
          * Creates the entity.
+         * @param x initial x coordinate.
+         * @param y initial y coordinate.
          * @param maxSpeed maximum speed (units/s) of the entity
          * @param maxRotationSpeed maximum rotation speed (radian/s) of the entity
          */
-        TrafficEntity(const float maxSpeed, const float maxRotationSpeed);
+        TrafficEntity(const float x, const float y, const float maxSpeed, const float maxRotationSpeed);
 
         /**
          * Updates the entity speed and position based on the target node.

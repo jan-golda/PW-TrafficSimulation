@@ -12,7 +12,7 @@ namespace vis {
     private:
         sf::CircleShape shape;
     public:
-        Pedestrian() : Entity(&shape, 10, 0.8) {
+        Pedestrian(float x, float y) : Entity(&shape, x, y, 10, 0.8) {
             shape.setRadius(5);
             shape.setOrigin(5, 5);
 

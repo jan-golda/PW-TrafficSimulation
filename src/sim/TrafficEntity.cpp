@@ -6,8 +6,8 @@
 
 using namespace sim;
 
-TrafficEntity::TrafficEntity(const float maxSpeed, const float maxRotationSpeed) :
-        maxSpeed(maxSpeed), maxRotationSpeed(maxRotationSpeed) {}
+TrafficEntity::TrafficEntity(float x, float y, const float maxSpeed, const float maxRotationSpeed) :
+        position(x, y), maxSpeed(maxSpeed), maxRotationSpeed(maxRotationSpeed) {}
 
 void TrafficEntity::update(float elapsed) {
     if (!targetNode) {

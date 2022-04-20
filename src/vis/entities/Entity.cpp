@@ -7,8 +7,8 @@
 
 using namespace vis;
 
-Entity::Entity(sf::Drawable* drawable, float maxSpeed, float maxRotationSpeed) :
-    drawable(drawable), trafficEntity(maxSpeed, maxRotationSpeed) {}
+Entity::Entity(sf::Drawable* drawable, float x, float y, float maxSpeed, float maxRotationSpeed) :
+    drawable(drawable), trafficEntity(x, y, maxSpeed, maxRotationSpeed) {}
 
 void Entity::update(float elapsed) {
     auto position = trafficEntity.getPosition();

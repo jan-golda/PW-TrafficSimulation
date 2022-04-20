@@ -46,15 +46,19 @@ namespace vis {
 
         /**
          * Spawns a new, random car.
+         * @param x initial x coordinate.
+         * @param y initial y coordinate.
          * @return Pointer to the created car.
          */
-        Car* createCar();
+        Car* createCar(float x, float y);
 
         /**
          * Spawns a new, random pedestrian.
+         * @param x initial x coordinate.
+         * @param y initial y coordinate.
          * @return Pointer to the created pedestrian.
          */
-        Pedestrian* createPedestrian();
+        Pedestrian* createPedestrian(float x, float y);
 
     };
 }

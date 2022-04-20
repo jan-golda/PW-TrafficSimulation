@@ -12,7 +12,7 @@ namespace vis {
     private:
         sf::ConvexShape shape;
     public:
-        Car() : Entity(&shape, 40, 0.1) {
+        Car(float x, float y) : Entity(&shape, x, y, 40, 0.1) {
             shape.setPointCount(6);
             shape.setPoint(0, sf::Vector2f(5, 0));
             shape.setPoint(1, sf::Vector2f(15, 0));
