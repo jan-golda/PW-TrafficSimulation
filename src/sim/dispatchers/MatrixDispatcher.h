@@ -94,14 +94,15 @@ namespace sim {
          * @param entity Entity to update the logic for.
          * @param edge Edge assigned to the entity.
          * @param elapsed Time (in seconds) from the last logic update.
+         * @return if entity was deposited in the target node and should be removed.
          */
-        void updateEntity(TrafficEntity* entity, Edge edge, float elapsed);
+        bool checkEntity(TrafficEntity* entity, Edge edge, float elapsed);
 
         /**
          * Perform dispatcher simulation logic for an input node.
          * @param nodeId Id (within this dispatcher) of an input node.
          */
-        void updateInputNode(std::size_t nodeId);
+        void checkInputNode(std::size_t nodeId);
 
     };
 }

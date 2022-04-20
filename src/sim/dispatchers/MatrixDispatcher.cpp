@@ -4,21 +4,22 @@
 using namespace sim;
 
 template<std::size_t NInputs, std::size_t NOutputs>
-void MatrixDispatcher<NInputs, NOutputs>::updateEntity(TrafficEntity* entity, Edge edge, float elapsed) {
+bool MatrixDispatcher<NInputs, NOutputs>::checkEntity(TrafficEntity* entity, Edge edge, float elapsed) {
     entity->update(elapsed);
 
     // if the entity is not near the output node let it drive
     auto outputNode = outputNodes[edge.second];
-    if (!entity->isNear(outputNode.get())) return;
+    if (!entity->isNear(outputNode.get()))
+        return false;
 
     // deposit the entity into the output node
-    entities.remove(std::make_pair(entity, edge));
     outputNode->push(entity);
     edgesSemaphore[edge.first][edge.second]--;
+    return true;
 }
 
 template<std::size_t NInputs, std::size_t NOutputs>
-void MatrixDispatcher<NInputs, NOutputs>::updateInputNode(std::size_t nodeId) {
+void MatrixDispatcher<NInputs, NOutputs>::checkInputNode(std::size_t nodeId) {
     auto node = inputNodes[nodeId];
 
     // check if there is an entity waiting
@@ -53,10 +54,11 @@ void MatrixDispatcher<NInputs, NOutputs>::updateInputNode(std::size_t nodeId) {
 
 template<std::size_t NInputs, std::size_t NOutputs>
 void MatrixDispatcher<NInputs, NOutputs>::update(float elapsed) {
-    for (const auto& [entity, edge] : entities)
-        updateEntity(entity, edge, elapsed);
+    entities.template remove_if([this, &elapsed](auto entry){
+        return checkEntity(entry.first, entry.second, elapsed);
+    });
     for (int i = 0; i < NInputs; i++)
-        updateInputNode(i);
+        checkInputNode(i);
 }
 
 template<std::size_t NInputs, std::size_t NOutputs>
