@@ -18,8 +18,9 @@ add_executable(
         src/sim/dispatchers/TrafficDispatcher.h
         src/sim/dispatchers/MatrixDispatcher.h
         src/sim/dispatchers/OneWayStraightDispatcher.h
+        src/sim/dispatchers/TwoWayStraightDispatcher.h
         src/vis/MapSegment.h
         src/vis/segments/OneWayRoad.cpp src/vis/segments/OneWayRoad.h
-)
+        src/vis/segments/Sidewalk.cpp src/vis/segments/Sidewalk.h)
 
 target_link_libraries(PW_TrafficSimulation sfml-graphics sfml-window sfml-system glm)
