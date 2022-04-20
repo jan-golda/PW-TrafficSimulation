@@ -3,14 +3,19 @@
 using namespace vis;
 
 void Map::update(float elapsed) {
+    // update simulation
     simulation.update(elapsed);
-    for (auto&& e : entities)
-        e->update(elapsed);
+
+    // update visualization
+    for (auto&& entity : entities)
+        entity->update(elapsed);
 }
 
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    for (auto&& e : entities)
-        target.draw(*e);
+    for (auto&& segment : segments)
+        target.draw(*segment);
+    for (auto&& entity : entities)
+        target.draw(*entity);
 }
 
 Car* Map::createCar() {
@@ -25,8 +30,4 @@ Pedestrian* Map::createPedestrian() {
     entities.emplace_back(std::unique_ptr<Entity>(pedestrian));
     simulation.registerEntity(&pedestrian->getTrafficEntity());
     return pedestrian;
-}
-
-sim::TrafficSimulation& Map::getTrafficSimulation() {
-    return simulation;
 }
