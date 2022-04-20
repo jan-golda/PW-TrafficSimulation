@@ -7,16 +7,11 @@
 
 using namespace vis;
 
-OneWayRoad::OneWayRoad() {
+OneWayRoad::OneWayRoad(const std::shared_ptr<sim::TrafficNode>& inputNode, const std::shared_ptr<sim::TrafficNode>& outputNode) {
+    dispatcher.setInputNode(0, inputNode);
+    dispatcher.setOutputNode(0, outputNode);
+
     roadShape.setFillColor(sf::Color(176, 190, 197));
-}
-
-void OneWayRoad::setInputNode(const std::shared_ptr<sim::TrafficNode>& node) {
-    dispatcher.setInputNode(0, node);
-}
-
-void OneWayRoad::setOutputNode(const std::shared_ptr<sim::TrafficNode>& node) {
-    dispatcher.setOutputNode(0, node);
 }
 
 void OneWayRoad::update(float elapsed) {

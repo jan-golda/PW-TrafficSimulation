@@ -11,17 +11,13 @@ namespace vis {
      */
     class OneWayRoad : public MapSegment {
     public:
-        OneWayRoad();
+        OneWayRoad(const std::shared_ptr<sim::TrafficNode>& inputNode, const std::shared_ptr<sim::TrafficNode>& outputNode);
 
         /**
          * Updates the segment based on its dispatcher.
          * @param elapsed Time (in seconds) from the last logic update.
          */
         void update(float elapsed) override;
-
-        // getters and setters
-        void setInputNode(const std::shared_ptr<sim::TrafficNode>& node);
-        void setOutputNode(const std::shared_ptr<sim::TrafficNode>& node);
 
         sim::TrafficDispatcher* getDispatcher() override;
 
