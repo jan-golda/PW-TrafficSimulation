@@ -22,10 +22,10 @@ Sidewalk::Sidewalk(
 }
 
 void Sidewalk::update(float elapsed) {
-    auto posIn0 = dispatcher.getInputNode(0)->position;
-    auto posIn1 = dispatcher.getInputNode(1)->position;
-    auto posOut0 = dispatcher.getOutputNode(0)->position;
-    auto posOut1 = dispatcher.getOutputNode(1)->position;
+    auto posIn0 = dispatcher.getInputNode(0)->getPosition();
+    auto posIn1 = dispatcher.getInputNode(1)->getPosition();
+    auto posOut0 = dispatcher.getOutputNode(0)->getPosition();
+    auto posOut1 = dispatcher.getOutputNode(1)->getPosition();
 
     auto pos1 = (posIn0 + posOut1) / 2.0f;
     auto pos2 = (posIn1 + posOut0) / 2.0f;

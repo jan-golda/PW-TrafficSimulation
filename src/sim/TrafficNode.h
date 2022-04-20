@@ -20,6 +20,11 @@ namespace sim {
          */
         std::queue<TrafficEntity*> queue;
 
+        /**
+         * Position of this node in the simulation space.
+         */
+        glm::vec2 position;
+
     public:
         /**
          * Create node at coordinates (0, 0).
@@ -32,11 +37,6 @@ namespace sim {
          * @param y coordinate of the node
          */
         TrafficNode(float x, float y);
-
-        /**
-         * Position of this node in the simulation space.
-         */
-        glm::vec2 position;
 
         /**
          * Checks if there is an entity awaiting in this node.
@@ -60,6 +60,9 @@ namespace sim {
          * @param entity to add to the queue.
          */
         void push(TrafficEntity* entity);
+
+        // getters and setters
+        const glm::vec2& getPosition() const;
     };
 }
 

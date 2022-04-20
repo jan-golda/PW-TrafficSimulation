@@ -15,7 +15,7 @@ void TrafficEntity::update(float elapsed) {
         return;
     }
 
-    const auto targetDirection = glm::normalize(targetNode->position - position);
+    const auto targetDirection = glm::normalize(targetNode->getPosition() - position);
 
     // if stationary assume instant rotation
     if (glm::length(speed) < glm::epsilon<float>())
@@ -36,7 +36,7 @@ void TrafficEntity::update(float elapsed) {
 
 bool TrafficEntity::isNearTarget(const float epsilon) const {
     if (!targetNode) return false;
-    return glm::length(position - targetNode->position) < epsilon;
+    return glm::length(position - targetNode->getPosition()) < epsilon;
 }
 
 const glm::vec2& TrafficEntity::getSpeed() const {

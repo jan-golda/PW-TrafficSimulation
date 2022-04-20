@@ -15,8 +15,8 @@ OneWayRoad::OneWayRoad(const std::shared_ptr<sim::TrafficNode>& inputNode, const
 }
 
 void OneWayRoad::update(float elapsed) {
-    auto pos1 = dispatcher.getInputNode(0)->position;
-    auto pos2 = dispatcher.getOutputNode(0)->position;
+    auto pos1 = dispatcher.getInputNode(0)->getPosition();
+    auto pos2 = dispatcher.getOutputNode(0)->getPosition();
 
     // size
     float width = 35;

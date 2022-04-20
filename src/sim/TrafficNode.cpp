@@ -22,3 +22,7 @@ void TrafficNode::push(TrafficEntity* entity) {
 TrafficNode::TrafficNode() : TrafficNode(0,0) {}
 
 TrafficNode::TrafficNode(float x, float y) : position(x,y) {}
+
+const glm::vec2& TrafficNode::getPosition() const {
+    return position;
+}
