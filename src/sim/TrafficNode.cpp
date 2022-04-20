@@ -18,3 +18,7 @@ void TrafficNode::pop() {
 void TrafficNode::push(TrafficEntity* entity) {
     queue.push(entity);
 }
+
+TrafficNode::TrafficNode() : TrafficNode(0,0) {}
+
+TrafficNode::TrafficNode(float x, float y) : position(x,y) {}

@@ -22,6 +22,18 @@ namespace sim {
 
     public:
         /**
+         * Create node at coordinates (0, 0).
+         */
+        TrafficNode();
+
+        /**
+         * Create node at given coordinates.
+         * @param x coordinate of the node
+         * @param y coordinate of the node
+         */
+        TrafficNode(float x, float y);
+
+        /**
          * Position of this node in the simulation space.
          */
         glm::vec2 position;
