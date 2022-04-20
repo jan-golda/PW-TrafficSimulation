@@ -9,27 +9,45 @@ namespace sim {
     // forward declaration
     class TrafficEntity;
 
+    /**
+     * Node in a traffic graph.
+     * Stores its position and entities that await in it.
+     */
     class TrafficNode {
     private:
-        int queueLimit = 0;
+        /**
+         * Queue of entities that await in this node.
+         */
         std::queue<TrafficEntity*> queue;
 
     public:
+        /**
+         * Position of this node in the simulation space.
+         */
         glm::vec2 position;
 
-        void setLimit(int limit);
+        /**
+         * Checks if there is an entity awaiting in this node.
+         * @return if entity queue is empty.
+         */
+        bool empty() const;
 
-        [[nodiscard]] int getLimit() const;
+        /**
+         * Returns the first entity in queue. Should be called only if `!empty()`.
+         * @return entity from the front of the queue.
+         */
+        TrafficEntity* front() const;
 
-        [[nodiscard]] int getSize() const;
+        /**
+         * Removes the first entity from the queue.
+         */
+        void pop();
 
-        [[nodiscard]] bool isFull() const;
-
-        bool push(TrafficEntity* entity);
-
-        TrafficEntity* pop();
-
-        [[nodiscard]] TrafficEntity* peek() const;
+        /**
+         * Adds the given entity to the back of the queue.
+         * @param entity to add to the queue.
+         */
+        void push(TrafficEntity* entity);
     };
 }
 
