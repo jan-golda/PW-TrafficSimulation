@@ -4,8 +4,8 @@
 #include "segments/OneWayRoad.h"
 #include "segments/Sidewalk.h"
 #include "segments/OneWayCrossing.h"
-#include "segments/OneWaySplitJunction.h"
-#include "segments/OneWayJoinJunction.h"
+#include "segments/OneWaySplitTJunction.h"
+#include "segments/OneWayJoinTJunction.h"
 #include "segments/TwoWayRoad.h"
 #include "segments/TwoWayTJunction.h"
 #include "segments/WeirdTJunction.h"
@@ -64,8 +64,8 @@ Map::Map() {
     auto crossing3 = new OneWayCrossing(200, 500, 90);
 
     // junctions
-    auto junction1 = new OneWaySplitJunction(300, 100, 0, false);
-    auto junction2 = new OneWayJoinJunction(100, 300, 270, false);
+    auto junction1 = new OneWaySplitTJunction(300, 100, 0, false);
+    auto junction2 = new OneWayJoinTJunction(100, 300, 270, false);
     auto junction3 = new TwoWayTJunction(500, 300, 270);
     auto junction4 = new WeirdTJunction(500, 100, 0);
     auto junction5 = new WeirdTJunction(650, 300, 90);

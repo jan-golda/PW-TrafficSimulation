@@ -1,8 +1,8 @@
-#include "OneWaySplitJunction.h"
+#include "OneWaySplitTJunction.h"
 
 using namespace vis;
 
-OneWaySplitJunction::OneWaySplitJunction(float x, float y, float rotation, bool left) {
+OneWaySplitTJunction::OneWaySplitTJunction(float x, float y, float rotation, bool left) {
     const auto junctionPosition = sf::Vector2f(x, y);
     const float mirror = (left ? -1.0f : 1.0f);
 
@@ -43,15 +43,15 @@ OneWaySplitJunction::OneWaySplitJunction(float x, float y, float rotation, bool 
     }
 }
 
-std::shared_ptr<sim::TrafficNode> OneWaySplitJunction::getNode(std::size_t i) {
+std::shared_ptr<sim::TrafficNode> OneWaySplitTJunction::getNode(std::size_t i) {
     return nodes[i];
 }
 
-sim::TrafficDispatcher* OneWaySplitJunction::getDispatcher() {
+sim::TrafficDispatcher* OneWaySplitTJunction::getDispatcher() {
     return &dispatcher;
 }
 
-void OneWaySplitJunction::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void OneWaySplitTJunction::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (const auto & roadShape : roadShapes)
         target.draw(roadShape, states);
 }

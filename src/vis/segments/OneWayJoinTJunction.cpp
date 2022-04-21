@@ -1,8 +1,8 @@
-#include "OneWayJoinJunction.h"
+#include "OneWayJoinTJunction.h"
 
 using namespace vis;
 
-OneWayJoinJunction::OneWayJoinJunction(float x, float y, float rotation, bool left) {
+OneWayJoinTJunction::OneWayJoinTJunction(float x, float y, float rotation, bool left) {
     const auto junctionPosition = sf::Vector2f(x, y);
     const float mirror = (left ? -1.0f : 1.0f);
 
@@ -43,15 +43,15 @@ OneWayJoinJunction::OneWayJoinJunction(float x, float y, float rotation, bool le
     }
 }
 
-std::shared_ptr<sim::TrafficNode> OneWayJoinJunction::getNode(std::size_t i) {
+std::shared_ptr<sim::TrafficNode> OneWayJoinTJunction::getNode(std::size_t i) {
     return nodes[i];
 }
 
-sim::TrafficDispatcher* OneWayJoinJunction::getDispatcher() {
+sim::TrafficDispatcher* OneWayJoinTJunction::getDispatcher() {
     return &dispatcher;
 }
 
-void OneWayJoinJunction::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void OneWayJoinTJunction::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (const auto & roadShape : roadShapes)
         target.draw(roadShape, states);
 }

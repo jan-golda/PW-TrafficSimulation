@@ -28,8 +28,8 @@ add_executable(
         src/vis/segments/OneWayCrossing.h
         src/sim/dispatchers/OneWayJoinDispatcher.h
         src/sim/dispatchers/OneWaySplitDispatcher.h
-        src/vis/segments/OneWaySplitJunction.cpp src/vis/segments/OneWaySplitJunction.h
-        src/vis/segments/OneWayJoinJunction.cpp src/vis/segments/OneWayJoinJunction.h
+        src/vis/segments/OneWaySplitTJunction.cpp src/vis/segments/OneWaySplitTJunction.h
+        src/vis/segments/OneWayJoinTJunction.cpp src/vis/segments/OneWayJoinTJunction.h
         src/vis/segments/TwoWayTJunction.cpp src/vis/segments/TwoWayTJunction.h
         src/vis/segments/WeirdTJunction.cpp src/vis/segments/WeirdTJunction.h
         src/vis/segments/OneWayRoadCorner.cpp src/vis/segments/OneWayRoadCorner.h

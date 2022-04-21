@@ -1,25 +1,25 @@
-#ifndef PW_TRAFFICSIMULATION_ONEWAYSPLITJUNCTION_H
-#define PW_TRAFFICSIMULATION_ONEWAYSPLITJUNCTION_H
+#ifndef PW_TRAFFICSIMULATION_ONEWAYJOINTJUNCTION_H
+#define PW_TRAFFICSIMULATION_ONEWAYJOINTJUNCTION_H
 
 
 #include "../MapSegment.h"
-#include "../../sim/dispatchers/OneWaySplitDispatcher.h"
+#include "../../sim/dispatchers/OneWayJoinDispatcher.h"
 #include "../../sim/TrafficNode.h"
 
 namespace vis {
     /**
-     * Map segment that represents a T road junction with the side road splitting from the one-way traffic.
+     * Map segment that represents a T road junction with the side road joining the one-way traffic.
      */
-    class OneWaySplitJunction : public MapSegment {
+    class OneWayJoinTJunction : public MapSegment {
     public:
         /**
          * Initializes the junction.
          * @param x coordinate of the junction center.
          * @param y coordinate of the junction center.
          * @param rotation of the junction in degrees.
-         * @param left if true then the split road is to the left, otherwise to the right.
+         * @param left if true then the joining road is from the left, otherwise from the right.
          */
-        OneWaySplitJunction(float x, float y, float rotation = 0, bool left = false);
+        OneWayJoinTJunction(float x, float y, float rotation = 0, bool left = false);
 
         /**
          * Returns one of the nodes that define this segment.
@@ -42,11 +42,11 @@ namespace vis {
 
     private:
         std::shared_ptr<sim::TrafficNode> nodes[3];
-        sim::OneWaySplitDispatcher dispatcher;
+        sim::OneWayJoinDispatcher dispatcher;
 
         sf::RectangleShape roadShapes[2];
     };
 
 } // vis
 
-#endif //PW_TRAFFICSIMULATION_ONEWAYSPLITJUNCTION_H
+#endif //PW_TRAFFICSIMULATION_ONEWAYJOINTJUNCTION_H
