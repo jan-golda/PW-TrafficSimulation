@@ -105,15 +105,18 @@ Map::Map() {
     auto car2 = createCar(rCorner8->getNode()->getPosition().x, rCorner8->getNode()->getPosition().y);
     auto car3 = createCar(rCorner3->getNode()->getPosition().x, rCorner3->getNode()->getPosition().y);
     auto car4 = createCar(rCorner4->getNode()->getPosition().x, rCorner4->getNode()->getPosition().y);
+    auto car5 = createCar(rCorner1->getNode()->getPosition().x + 80, rCorner1->getNode()->getPosition().y);
+    auto car6 = createCar(rCorner7->getNode()->getPosition().x, rCorner7->getNode()->getPosition().y + 50);
+    auto car7 = createCar(junction6->getNode(2)->getPosition().x, junction6->getNode(2)->getPosition().y - 50);
 
     //pedestrians
-    auto pedestrian1 = createPedestrian(sCorner1->getNode(0)->getPosition().x, sCorner1->getNode(0)->getPosition().y);
+    auto pedestrian1 = createPedestrian(sCorner1->getNode(0)->getPosition().x + 30, sCorner1->getNode(0)->getPosition().y);
     auto pedestrian2 = createPedestrian(sCorner2->getNode(0)->getPosition().x, sCorner2->getNode(0)->getPosition().y);
-    auto pedestrian3 = createPedestrian(sCorner3->getNode(0)->getPosition().x, sCorner3->getNode(0)->getPosition().y);
+    auto pedestrian3 = createPedestrian(sCorner3->getNode(0)->getPosition().x - 45, sCorner3->getNode(0)->getPosition().y);
     auto pedestrian4 = createPedestrian(sCorner4->getNode(0)->getPosition().x, sCorner4->getNode(0)->getPosition().y);
-    auto pedestrian5 = createPedestrian(sCorner1->getNode(1)->getPosition().x, sCorner1->getNode(1)->getPosition().y);
+    auto pedestrian5 = createPedestrian(sCorner1->getNode(1)->getPosition().x, sCorner1->getNode(1)->getPosition().y + 15);
     auto pedestrian6 = createPedestrian(sCorner2->getNode(1)->getPosition().x, sCorner2->getNode(1)->getPosition().y);
-    auto pedestrian7 = createPedestrian(sCorner3->getNode(1)->getPosition().x, sCorner3->getNode(1)->getPosition().y);
+    auto pedestrian7 = createPedestrian(sCorner3->getNode(1)->getPosition().x, sCorner3->getNode(1)->getPosition().y - 70);
     auto pedestrian8 = createPedestrian(sCorner4->getNode(1)->getPosition().x, sCorner4->getNode(1)->getPosition().y);
 
     // position entities
@@ -121,6 +124,9 @@ Map::Map() {
     rCorner8->getNode()->push(&car2->getTrafficEntity());
     rCorner3->getNode()->push(&car3->getTrafficEntity());
     rCorner4->getNode()->push(&car4->getTrafficEntity());
+    rCorner1->getNode()->push(&car5->getTrafficEntity());
+    rCorner7->getNode()->push(&car6->getTrafficEntity());
+    junction6->getNode(2)->push(&car7->getTrafficEntity());
     sCorner1->getNode(0)->push(&pedestrian1->getTrafficEntity());
     sCorner2->getNode(0)->push(&pedestrian2->getTrafficEntity());
     sCorner3->getNode(0)->push(&pedestrian3->getTrafficEntity());
