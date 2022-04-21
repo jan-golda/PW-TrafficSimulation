@@ -10,6 +10,7 @@
 #include "segments/TwoWayTJunction.h"
 #include "segments/WeirdTJunction.h"
 #include "segments/OneWayRoadCorner.h"
+#include "segments/SidewalkCorner.h"
 
 using namespace vis;
 
@@ -54,14 +55,10 @@ Map::Map() {
     auto rCorner8 = new OneWayRoadCorner(650, 500);
 
     // sidewalk nodes
-    auto sNode1_0 = std::make_shared<sim::TrafficNode>(200+7, 200+7);
-    auto sNode1_1 = std::make_shared<sim::TrafficNode>(200-7, 200-7);
-    auto sNode2_0 = std::make_shared<sim::TrafficNode>(400-7, 200+7);
-    auto sNode2_1 = std::make_shared<sim::TrafficNode>(400+7, 200-7);
-    auto sNode3_0 = std::make_shared<sim::TrafficNode>(400-7, 400-7);
-    auto sNode3_1 = std::make_shared<sim::TrafficNode>(400+7, 400+7);
-    auto sNode4_0 = std::make_shared<sim::TrafficNode>(200+7, 400-7);
-    auto sNode4_1 = std::make_shared<sim::TrafficNode>(200-7, 400+7);
+    auto sCorner1 = new SidewalkCorner(200, 200, 0);
+    auto sCorner2 = new SidewalkCorner(400, 200, 90);
+    auto sCorner3 = new SidewalkCorner(400, 400, 180);
+    auto sCorner4 = new SidewalkCorner(200, 400, 270);
 
     // crossing
     auto crossing1 = new OneWayCrossing(300, 200, 0);
@@ -96,12 +93,12 @@ Map::Map() {
     auto road17 = new OneWayRoad(rCorner8->getNode(), junction6->getNode(3));
 
     // sidewalks
-    auto sidewalk1 = new Sidewalk(sNode1_0, crossing1->getNode(4), crossing1->getNode(5), sNode1_1);
-    auto sidewalk2 = new Sidewalk(crossing1->getNode(2), sNode2_0, sNode2_1, crossing1->getNode(1));
-    auto sidewalk3 = new Sidewalk(sNode2_0, sNode3_0, sNode3_1, sNode2_1);
-    auto sidewalk4 = new Sidewalk(sNode3_0, sNode4_0, sNode4_1, sNode3_1);
-    auto sidewalk5 = new Sidewalk(sNode4_0, crossing2->getNode(1), crossing2->getNode(2), sNode4_1);
-    auto sidewalk6 = new Sidewalk(crossing2->getNode(5), sNode1_0, sNode1_1, crossing2->getNode(4));
+    auto sidewalk1 = new Sidewalk(sCorner1->getNode(0), crossing1->getNode(4), crossing1->getNode(5), sCorner1->getNode(1));
+    auto sidewalk2 = new Sidewalk(crossing1->getNode(2), sCorner2->getNode(0), sCorner2->getNode(1), crossing1->getNode(1));
+    auto sidewalk3 = new Sidewalk(sCorner2->getNode(0), sCorner3->getNode(0), sCorner3->getNode(1), sCorner2->getNode(1));
+    auto sidewalk4 = new Sidewalk(sCorner3->getNode(0), sCorner4->getNode(0), sCorner4->getNode(1), sCorner3->getNode(1));
+    auto sidewalk5 = new Sidewalk(sCorner4->getNode(0), crossing2->getNode(1), crossing2->getNode(2), sCorner4->getNode(1));
+    auto sidewalk6 = new Sidewalk(crossing2->getNode(5), sCorner1->getNode(0), sCorner1->getNode(1), crossing2->getNode(4));
 
     //cars
     auto car1 = createCar(rCorner1->getNode()->getPosition().x, rCorner1->getNode()->getPosition().y);
@@ -110,28 +107,28 @@ Map::Map() {
     auto car4 = createCar(rCorner4->getNode()->getPosition().x, rCorner4->getNode()->getPosition().y);
 
     //pedestrians
-    auto pedestrian1 = createPedestrian(sNode1_0->getPosition().x, sNode1_0->getPosition().y);
-    auto pedestrian2 = createPedestrian(sNode2_0->getPosition().x, sNode2_0->getPosition().y);
-    auto pedestrian3 = createPedestrian(sNode3_0->getPosition().x, sNode3_0->getPosition().y);
-    auto pedestrian4 = createPedestrian(sNode4_0->getPosition().x, sNode4_0->getPosition().y);
-    auto pedestrian5 = createPedestrian(sNode1_1->getPosition().x, sNode1_1->getPosition().y);
-    auto pedestrian6 = createPedestrian(sNode2_1->getPosition().x, sNode2_1->getPosition().y);
-    auto pedestrian7 = createPedestrian(sNode3_1->getPosition().x, sNode3_1->getPosition().y);
-    auto pedestrian8 = createPedestrian(sNode4_1->getPosition().x, sNode4_1->getPosition().y);
+    auto pedestrian1 = createPedestrian(sCorner1->getNode(0)->getPosition().x, sCorner1->getNode(0)->getPosition().y);
+    auto pedestrian2 = createPedestrian(sCorner2->getNode(0)->getPosition().x, sCorner2->getNode(0)->getPosition().y);
+    auto pedestrian3 = createPedestrian(sCorner3->getNode(0)->getPosition().x, sCorner3->getNode(0)->getPosition().y);
+    auto pedestrian4 = createPedestrian(sCorner4->getNode(0)->getPosition().x, sCorner4->getNode(0)->getPosition().y);
+    auto pedestrian5 = createPedestrian(sCorner1->getNode(1)->getPosition().x, sCorner1->getNode(1)->getPosition().y);
+    auto pedestrian6 = createPedestrian(sCorner2->getNode(1)->getPosition().x, sCorner2->getNode(1)->getPosition().y);
+    auto pedestrian7 = createPedestrian(sCorner3->getNode(1)->getPosition().x, sCorner3->getNode(1)->getPosition().y);
+    auto pedestrian8 = createPedestrian(sCorner4->getNode(1)->getPosition().x, sCorner4->getNode(1)->getPosition().y);
 
     // position entities
     rCorner1->getNode()->push(&car1->getTrafficEntity());
     rCorner8->getNode()->push(&car2->getTrafficEntity());
     rCorner3->getNode()->push(&car3->getTrafficEntity());
     rCorner4->getNode()->push(&car4->getTrafficEntity());
-    sNode1_0->push(&pedestrian1->getTrafficEntity());
-    sNode2_0->push(&pedestrian2->getTrafficEntity());
-    sNode3_0->push(&pedestrian3->getTrafficEntity());
-    sNode4_0->push(&pedestrian4->getTrafficEntity());
-    sNode1_1->push(&pedestrian5->getTrafficEntity());
-    sNode2_1->push(&pedestrian6->getTrafficEntity());
-    sNode3_1->push(&pedestrian7->getTrafficEntity());
-    sNode4_1->push(&pedestrian8->getTrafficEntity());
+    sCorner1->getNode(0)->push(&pedestrian1->getTrafficEntity());
+    sCorner2->getNode(0)->push(&pedestrian2->getTrafficEntity());
+    sCorner3->getNode(0)->push(&pedestrian3->getTrafficEntity());
+    sCorner4->getNode(0)->push(&pedestrian4->getTrafficEntity());
+    sCorner1->getNode(1)->push(&pedestrian5->getTrafficEntity());
+    sCorner2->getNode(1)->push(&pedestrian6->getTrafficEntity());
+    sCorner3->getNode(1)->push(&pedestrian7->getTrafficEntity());
+    sCorner4->getNode(1)->push(&pedestrian8->getTrafficEntity());
 
     // register segments
     segments.push_back(std::unique_ptr<MapSegment>(crossing1));
@@ -171,6 +168,10 @@ Map::Map() {
     segments.push_back(std::unique_ptr<MapSegment>(rCorner4));
     segments.push_back(std::unique_ptr<MapSegment>(rCorner7));
     segments.push_back(std::unique_ptr<MapSegment>(rCorner8));
+    segments.push_back(std::unique_ptr<MapSegment>(sCorner1));
+    segments.push_back(std::unique_ptr<MapSegment>(sCorner2));
+    segments.push_back(std::unique_ptr<MapSegment>(sCorner3));
+    segments.push_back(std::unique_ptr<MapSegment>(sCorner4));
 
     // register dispatchers
     simulation.registerDispatcher(crossing1->getDispatcher());

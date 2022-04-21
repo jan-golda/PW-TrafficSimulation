@@ -33,6 +33,7 @@ add_executable(
         src/vis/segments/TwoWayTJunction.cpp src/vis/segments/TwoWayTJunction.h
         src/vis/segments/WeirdTJunction.cpp src/vis/segments/WeirdTJunction.h
         src/vis/segments/OneWayRoadCorner.cpp src/vis/segments/OneWayRoadCorner.h
+        src/vis/segments/SidewalkCorner.cpp src/vis/segments/SidewalkCorner.h
 )
 
 target_link_libraries(PW_TrafficSimulation sfml-graphics sfml-window sfml-system glm)
