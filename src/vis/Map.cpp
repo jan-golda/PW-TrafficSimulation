@@ -46,11 +46,12 @@ Pedestrian* Map::createPedestrian(float x, float y) {
 
 Map::Map() {
     // road corners
-    auto rCorner1 = new OneWayRoadCorner(100, 100);
+    auto rCorner1 = new OneWayRoadCorner(200, 100);
     auto rCorner3 = new OneWayRoadCorner(300, 300);
     auto rCorner4 = new OneWayRoadCorner(100, 500);
     auto rCorner7 = new OneWayRoadCorner(650, 100);
     auto rCorner8 = new OneWayRoadCorner(650, 500);
+    auto rCorner9 = new OneWayRoadCorner(100, 200);
 
     // sidewalk nodes
     auto sCorner1 = new SidewalkCorner(200, 200, 0);
@@ -77,7 +78,7 @@ Map::Map() {
     auto road3 = new OneWayRoad(crossing1->getNode(3), rCorner3->getNode());
     auto road4 = new OneWayRoad(rCorner3->getNode(), crossing2->getNode(0));
     auto road5 = new OneWayRoad(crossing2->getNode(3), junction2->getNode(1));
-    auto road6 = new OneWayRoad(junction2->getNode(2), rCorner1->getNode());
+    auto road6 = new OneWayRoad(junction2->getNode(2), rCorner9->getNode());
     auto road7 = new OneWayRoad(junction1->getNode(2), junction4->getNode(3));
     auto road8 = new TwoWayRoad(junction4->getNode(2), junction3->getNode(0), junction3->getNode(1), junction4->getNode(1));
     auto road9 = new OneWayRoad(junction6->getNode(0), crossing3->getNode(0));
@@ -89,6 +90,7 @@ Map::Map() {
     auto road15 = new OneWayRoad(rCorner7->getNode(), junction5->getNode(3));
     auto road16 = new OneWayRoad(junction5->getNode(0), rCorner8->getNode());
     auto road17 = new OneWayRoad(rCorner8->getNode(), junction6->getNode(3));
+    auto road18 = new OneWayRoad(rCorner9->getNode(), rCorner1->getNode());
 
     // sidewalks
     auto sidewalk1 = new Sidewalk(sCorner1->getNode(0), crossing1->getNode(4), crossing1->getNode(5), sCorner1->getNode(1));
@@ -103,7 +105,7 @@ Map::Map() {
     auto car2 = createCar(rCorner8->getNode()->getPosition().x, rCorner8->getNode()->getPosition().y);
     auto car3 = createCar(rCorner3->getNode()->getPosition().x, rCorner3->getNode()->getPosition().y);
     auto car4 = createCar(rCorner4->getNode()->getPosition().x, rCorner4->getNode()->getPosition().y);
-    auto car5 = createCar(rCorner1->getNode()->getPosition().x + 80, rCorner1->getNode()->getPosition().y);
+    auto car5 = createCar(rCorner9->getNode()->getPosition().x + 20, rCorner9->getNode()->getPosition().y-20);
     auto car6 = createCar(rCorner7->getNode()->getPosition().x, rCorner7->getNode()->getPosition().y + 50);
     auto car7 = createCar(junction6->getNode(2)->getPosition().x, junction6->getNode(2)->getPosition().y - 50);
 
@@ -122,7 +124,7 @@ Map::Map() {
     rCorner8->getNode()->push(&car2->getTrafficEntity());
     rCorner3->getNode()->push(&car3->getTrafficEntity());
     rCorner4->getNode()->push(&car4->getTrafficEntity());
-    rCorner1->getNode()->push(&car5->getTrafficEntity());
+    rCorner9->getNode()->push(&car5->getTrafficEntity());
     rCorner7->getNode()->push(&car6->getTrafficEntity());
     junction6->getNode(2)->push(&car7->getTrafficEntity());
     sCorner1->getNode(0)->push(&pedestrian1->getTrafficEntity());
@@ -161,6 +163,7 @@ Map::Map() {
     segments.push_back(std::unique_ptr<MapSegment>(road15));
     segments.push_back(std::unique_ptr<MapSegment>(road16));
     segments.push_back(std::unique_ptr<MapSegment>(road17));
+    segments.push_back(std::unique_ptr<MapSegment>(road18));
     segments.push_back(std::unique_ptr<MapSegment>(sidewalk1));
     segments.push_back(std::unique_ptr<MapSegment>(sidewalk2));
     segments.push_back(std::unique_ptr<MapSegment>(sidewalk3));
@@ -172,6 +175,7 @@ Map::Map() {
     segments.push_back(std::unique_ptr<MapSegment>(rCorner4));
     segments.push_back(std::unique_ptr<MapSegment>(rCorner7));
     segments.push_back(std::unique_ptr<MapSegment>(rCorner8));
+    segments.push_back(std::unique_ptr<MapSegment>(rCorner9));
     segments.push_back(std::unique_ptr<MapSegment>(sCorner1));
     segments.push_back(std::unique_ptr<MapSegment>(sCorner2));
     segments.push_back(std::unique_ptr<MapSegment>(sCorner3));
@@ -204,6 +208,7 @@ Map::Map() {
     simulation.registerDispatcher(road15->getDispatcher());
     simulation.registerDispatcher(road16->getDispatcher());
     simulation.registerDispatcher(road17->getDispatcher());
+    simulation.registerDispatcher(road18->getDispatcher());
     simulation.registerDispatcher(sidewalk1->getDispatcher());
     simulation.registerDispatcher(sidewalk2->getDispatcher());
     simulation.registerDispatcher(sidewalk3->getDispatcher());
