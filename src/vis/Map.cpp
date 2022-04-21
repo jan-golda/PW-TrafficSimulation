@@ -35,14 +35,12 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 Car* Map::createCar(float x, float y) {
     auto* car = new Car(x, y);
     entities.emplace_back(std::unique_ptr<Entity>(car));
-    simulation.registerEntity(&car->getTrafficEntity());
     return car;
 }
 
 Pedestrian* Map::createPedestrian(float x, float y) {
     auto* pedestrian = new Pedestrian(x, y);
     entities.emplace_back(std::unique_ptr<Entity>(pedestrian));
-    simulation.registerEntity(&pedestrian->getTrafficEntity());
     return pedestrian;
 }
 
