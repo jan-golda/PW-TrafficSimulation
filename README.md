@@ -1,2 +1,2 @@
 # PW-TrafficSimulation
-![Demo](https://user-images.githubusercontent.com/1795585/164457479-1c841432-2246-4f21-87fd-0392d604fe8b.png)
+![Demo](https://user-images.githubusercontent.com/1795585/164457558-ad9eaa5c-dc9b-4b75-aba0-aae7c557d14f.png)
