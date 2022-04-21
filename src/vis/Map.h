@@ -60,6 +60,8 @@ namespace vis {
          */
         Pedestrian* createPedestrian(float x, float y);
 
+        Map();
+
     };
 }
 
