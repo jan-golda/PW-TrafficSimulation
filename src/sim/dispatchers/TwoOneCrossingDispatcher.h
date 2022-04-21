@@ -5,6 +5,9 @@
 #include "MatrixDispatcher.h"
 
 namespace sim {
+    /**
+     * Dispatcher for junctions where a one-way and a two-way paths cross each other but are not connected.
+     */
     class TwoOneCrossingDispatcher : public MatrixDispatcher<3,3> {
     public:
         TwoOneCrossingDispatcher() {

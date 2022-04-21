@@ -5,6 +5,9 @@
 #include "MatrixDispatcher.h"
 
 namespace sim {
+    /**
+     * Dispatcher for fully-connected junctions with one input node and two output nodes.
+     */
     class OneWaySplitDispatcher : public MatrixDispatcher<1,2> {
     public:
         OneWaySplitDispatcher() {

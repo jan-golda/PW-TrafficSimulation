@@ -5,12 +5,16 @@
 #include "../../sim/dispatchers/OneWayStraightDispatcher.h"
 
 namespace vis {
-
     /**
-     * The simplest segment with one input node and one output node.
+     * Map segment that represents a simple one-way road.
      */
     class OneWayRoad : public MapSegment {
     public:
+        /**
+         * Initializes the road.
+         * @param inputNode input node at one end.
+         * @param outputNode output node at the other end.
+         */
         OneWayRoad(const std::shared_ptr<sim::TrafficNode>& inputNode, const std::shared_ptr<sim::TrafficNode>& outputNode);
 
         /**
@@ -19,18 +23,19 @@ namespace vis {
          */
         void update(float elapsed) override;
 
+        /**
+         * The dispatcher that manages nodes within this segment.
+         * @return pointer to the dispatcher.
+         */
         sim::TrafficDispatcher* getDispatcher() override;
 
     protected:
         /**
-         * A hook called whenever the map should be displayed by SFML.
+         * A hook called whenever the segment should be displayed by SFML.
          */
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     private:
-        /**
-         * The dispatcher that manages this segment's logic.
-         */
         sim::OneWayStraightDispatcher dispatcher;
 
         sf::RectangleShape roadShape;

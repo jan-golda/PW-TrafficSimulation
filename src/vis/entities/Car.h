@@ -12,6 +12,11 @@ namespace vis {
     private:
         sf::ConvexShape shape;
     public:
+        /**
+         * Create a car entity at given initial coordinates.
+         * @param x initial x coordinate.
+         * @param y initial y coordinate.
+         */
         Car(float x, float y) : Entity(&shape, x, y, 40, 0.1) {
             shape.setPointCount(6);
             shape.setPoint(0, sf::Vector2f(5, 0));

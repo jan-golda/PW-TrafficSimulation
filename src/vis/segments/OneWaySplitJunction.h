@@ -7,31 +7,41 @@
 #include "../../sim/TrafficNode.h"
 
 namespace vis {
-
+    /**
+     * Map segment that represents a T road junction with the side road splitting from the one-way traffic.
+     */
     class OneWaySplitJunction : public MapSegment {
     public:
-        OneWaySplitJunction(float x, float y, float rotation, bool left);
+        /**
+         * Initializes the junction.
+         * @param x coordinate of the junction center.
+         * @param y coordinate of the junction center.
+         * @param rotation of the junction in degrees.
+         * @param left if true then the split road is to the left, otherwise to the right.
+         */
+        OneWaySplitJunction(float x, float y, float rotation = 0, bool left = false);
 
-        // getters and setters
+        /**
+         * Returns one of the nodes that define this segment.
+         * @param i Id of the node within this this segment.
+         * @return simulation node.
+         */
         std::shared_ptr<sim::TrafficNode> getNode(std::size_t i);
 
+        /**
+         * The dispatcher that manages nodes within this segment.
+         * @return pointer to the dispatcher.
+         */
         sim::TrafficDispatcher* getDispatcher() override;
 
     protected:
         /**
-         * A hook called whenever the map should be displayed by SFML.
+         * A hook called whenever the segment should be displayed by SFML.
          */
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     private:
-        /**
-         * Nodes of this segment.
-         */
         std::shared_ptr<sim::TrafficNode> nodes[3];
-
-        /**
-         * The dispatcher that manages this segment's logic.
-         */
         sim::OneWaySplitDispatcher dispatcher;
 
         sf::RectangleShape roadShapes[2];

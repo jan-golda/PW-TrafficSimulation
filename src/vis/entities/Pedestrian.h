@@ -12,6 +12,11 @@ namespace vis {
     private:
         sf::CircleShape shape;
     public:
+        /**
+         * Create a pedestrian entity at given initial coordinates.
+         * @param x initial x coordinate.
+         * @param y initial y coordinate.
+         */
         Pedestrian(float x, float y) : Entity(&shape, x, y, 10, 0.8) {
             shape.setRadius(5);
             shape.setOrigin(5, 5);

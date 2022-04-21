@@ -4,6 +4,9 @@
 #include "MatrixDispatcher.h"
 
 namespace sim {
+    /**
+     * Dispatcher for fully-connected junctions with three two-way connections.
+     */
     class TwoWayTripleJunctionDispatcher : public MatrixDispatcher<3,3> {
     public:
         TwoWayTripleJunctionDispatcher() {

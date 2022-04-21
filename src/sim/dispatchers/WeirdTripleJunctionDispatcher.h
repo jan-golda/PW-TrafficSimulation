@@ -4,6 +4,9 @@
 #include "MatrixDispatcher.h"
 
 namespace sim {
+    /**
+     * Dispatcher for a junction that has a two-way connection joining a one-way to form a one-way output.
+     */
     class WeirdTripleJunctionDispatcher : public MatrixDispatcher<2,2> {
     public:
         WeirdTripleJunctionDispatcher() {

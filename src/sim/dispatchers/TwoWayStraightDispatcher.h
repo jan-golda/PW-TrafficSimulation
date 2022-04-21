@@ -4,6 +4,9 @@
 #include "MatrixDispatcher.h"
 
 namespace sim {
+    /**
+     * The simplest possible dispatcher that has two input nodes and two output node arranged to form two separate connections.
+     */
     class TwoWayStraightDispatcher : public MatrixDispatcher<2,2> {
     public:
         TwoWayStraightDispatcher() {

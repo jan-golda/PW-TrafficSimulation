@@ -61,7 +61,10 @@ namespace sim {
          */
         void push(TrafficEntity* entity);
 
-        // getters and setters
+        /**
+         * Returns the node position within simulation world.
+         * @return node position as 2d vector.
+         */
         const glm::vec2& getPosition() const;
     };
 }

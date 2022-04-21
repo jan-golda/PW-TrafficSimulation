@@ -60,6 +60,10 @@ namespace vis {
          */
         Pedestrian* createPedestrian(float x, float y);
 
+        /**
+         * Creates the map with a preconfigured sample simulation.
+         * TODO: Extract the sample creation to a dedicated, external system
+         */
         Map();
 
     };
