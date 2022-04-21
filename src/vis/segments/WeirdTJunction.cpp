@@ -43,6 +43,25 @@ WeirdTJunction::WeirdTJunction(float x, float y, float rotation) {
         road.setPosition(junctionPosition);
         road.setRotation(rotation);
     }
+
+    // setup lines
+    const float lineWidth = 2;
+    const float lineLength = laneWidth/5;
+    lineShapes[0].setSize(sf::Vector2f(lineWidth, lineLength));
+    lineShapes[1].setSize(sf::Vector2f(lineWidth, lineLength));
+    lineShapes[2].setSize(sf::Vector2f(lineLength, lineWidth));
+    lineShapes[3].setSize(sf::Vector2f(lineLength, lineWidth));
+
+    lineShapes[0].setOrigin(laneWidth+lineWidth, laneWidth/2 - lineLength*1);
+    lineShapes[1].setOrigin(laneWidth+lineWidth, laneWidth/2 - lineLength*3);
+    lineShapes[2].setOrigin(-lineLength*1, -laneWidth/2);
+    lineShapes[3].setOrigin(-lineLength*3, -laneWidth/2);
+
+    for (auto & line : lineShapes) {
+        line.setFillColor(sf::Color(207, 216, 220));
+        line.setPosition(junctionPosition);
+        line.setRotation(rotation);
+    }
 }
 
 std::shared_ptr<sim::TrafficNode> WeirdTJunction::getNode(std::size_t i) {
@@ -56,4 +75,6 @@ sim::TrafficDispatcher* WeirdTJunction::getDispatcher() {
 void WeirdTJunction::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (const auto & roadShape : roadShapes)
         target.draw(roadShape, states);
+    for (const auto & lineShape : lineShapes)
+        target.draw(lineShape, states);
 }

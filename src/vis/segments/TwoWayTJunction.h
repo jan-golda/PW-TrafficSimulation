@@ -35,6 +35,7 @@ namespace vis {
         sim::TwoWayTripleJunctionDispatcher dispatcher;
 
         sf::RectangleShape roadShapes[2];
+        sf::RectangleShape lineShapes[6];
     };
 
 } // vis

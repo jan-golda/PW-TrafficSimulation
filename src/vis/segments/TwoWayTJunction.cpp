@@ -48,6 +48,29 @@ TwoWayTJunction::TwoWayTJunction(float x, float y, float rotation) {
         road.setPosition(junctionPosition);
         road.setRotation(rotation);
     }
+
+    // setup lines
+    const float lineWidth = 2;
+    const float lineLength = laneWidth/5;
+    lineShapes[0].setSize(sf::Vector2f(lineWidth, lineLength));
+    lineShapes[1].setSize(sf::Vector2f(lineWidth, lineLength));
+    lineShapes[2].setSize(sf::Vector2f(lineLength, lineWidth));
+    lineShapes[3].setSize(sf::Vector2f(lineLength, lineWidth));
+    lineShapes[4].setSize(sf::Vector2f(lineWidth, lineLength));
+    lineShapes[5].setSize(sf::Vector2f(lineWidth, lineLength));
+
+    lineShapes[0].setOrigin(laneWidth+lineWidth, -lineLength*1);
+    lineShapes[1].setOrigin(laneWidth+lineWidth, -lineLength*3);
+    lineShapes[2].setOrigin(-lineLength*1, -laneWidth);
+    lineShapes[3].setOrigin(-lineLength*3, -laneWidth);
+    lineShapes[4].setOrigin(-laneWidth, laneWidth-lineLength*1);
+    lineShapes[5].setOrigin(-laneWidth, laneWidth-lineLength*3);
+
+    for (auto & line : lineShapes) {
+        line.setFillColor(sf::Color(207, 216, 220));
+        line.setPosition(junctionPosition);
+        line.setRotation(rotation);
+    }
 }
 
 std::shared_ptr<sim::TrafficNode> TwoWayTJunction::getNode(std::size_t i) {
@@ -61,4 +84,6 @@ sim::TrafficDispatcher* TwoWayTJunction::getDispatcher() {
 void TwoWayTJunction::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (const auto & roadShape : roadShapes)
         target.draw(roadShape, states);
+    for (const auto & lineShape : lineShapes)
+        target.draw(lineShape, states);
 }
